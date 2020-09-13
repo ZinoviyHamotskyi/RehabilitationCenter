@@ -7,7 +7,7 @@ public final class MyApp{
     public static void main( String[] args ) {
         System.out.println("Hello");
         Customer c = new Customer("Sany", "Ivanov");
-        c.VisitCenter();
+        c.visitCenter();
 
     }
 }

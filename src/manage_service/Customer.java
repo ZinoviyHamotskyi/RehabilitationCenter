@@ -16,6 +16,10 @@ public final class Customer {
         this.discount = new_discont;
     }
 
+    public double getDiscount(){
+        return discount;
+    }
+
     public String toString(){
         return "Customer " +
                 name + surname +
@@ -23,7 +27,7 @@ public final class Customer {
                 discount + ")";
     }
 
-    public void VisitCenter(){
+    public void visitCenter(){
         System.out.println(this.toString() + " visits the Center");
     }
 }
