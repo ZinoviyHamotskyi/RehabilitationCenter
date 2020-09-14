@@ -13,7 +13,6 @@ public final class Session {
     public Session(Customer customer,
                    Master master,
                    Service service,
-                   double startPrice,
                    LocalDate date){
         this.customer = customer;
         this.master = master;
@@ -23,12 +22,16 @@ public final class Session {
     }
 
     public void setMaster(Master master){
-        if(master.canDo(this.service)){
+        if (master.serviceList.contains(service)){
             this.master = master;
         }
         else {
             System.out.println("Error: this master cannot do this service");
         }
+    }
+
+    public Master getMaster() {
+        return master;
     }
 
     public void setDate(LocalDate date){
@@ -39,13 +42,17 @@ public final class Session {
         return price;
     }
 
+    public Customer getCustomer(){
+        return customer;
+    }
+
     public String toString(){
         return "Session Info:\n\t" +
                 customer.toString() +
-                "\t" + master.toString() +
-                "\t" + service.toString() +
-                "\t" + date.toString() +
-                "\tPrice: " + price + "\n";
+                "\n\t" + master.toString() +
+                "\n\t" + service.toString() +
+                "\n\tDate: " + date.toString() +
+                "\n\tPrice: " + price + "\n";
     }
 
 }

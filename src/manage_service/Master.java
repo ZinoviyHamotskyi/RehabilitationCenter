@@ -7,42 +7,49 @@ public final class Master {
     private final String surname;
     private double bonus;
     public State state;
-    private ArrayList<Service> serviceList;
+    public ArrayList<Service> serviceList;
 
     public Master(String name,
                   String surname,
-                  ArrayList<Service> services){
+                  Service service){
         this.bonus = 0;
         this.name = name;
         this.surname = surname;
         this.state = State.free;
-        this.serviceList = services;
+        this.serviceList = new ArrayList<>();
+        serviceList.add(service);
     }
 
     public void setBonus(double new_bonus){
         this.bonus = new_bonus;
     }
 
-    public String toString(){
-        return "Master " +
-                name + surname +
-                "(bonus: " +
-                bonus + "; " +
-                serviceList.toString() + ")";
-    }
-
-    public void treat(){
-        System.out.println(this.toString() + " treats");
-    }
-
     public void addService(Service service){
         serviceList.add(service);
     }
 
-    public boolean canDo(Service service){
-        for (int i = 0; i < serviceList.size(); i++) {
-            if (service == serviceList.get(i)) return true;
-        }
-        return false;
+    public String toString(){
+        return "Master " +
+                name + surname +
+                "(bonus: " + bonus + "; " +
+                typesToString() + "; " +
+                "State: " +
+                state.toString() + ")";
+    }
+
+    public void treat(){
+        System.out.println(this.toString() + " treats");
+        state = State.busy;
+    }
+
+    public String typesToString(){
+        StringBuilder types = new StringBuilder("Service types: ");
+        for (Service service : serviceList) types.append(service.getType().toString()).append(", ");
+        return types.toString();
+    }
+
+    public void finishTreatment(){
+        System.out.println(this.toString() + "finished treatment");
+        state = State.busy;
     }
 }

@@ -30,4 +30,8 @@ public final class Customer {
     public void visitCenter(){
         System.out.println(this.toString() + " visits the Center");
     }
+
+    public void leaveCenter(){
+        System.out.println(this.toString() + " left the Center");
+    }
 }
