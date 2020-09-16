@@ -1,11 +1,10 @@
 package Services;
 
-import Entities.Master;
 import Entities.Service;
 
 import java.util.ArrayList;
 
-public class ServiceService {
+final public class ServiceService {
     private final ArrayList<Service> services = new ArrayList<>();
 
     public void addService(Service service){

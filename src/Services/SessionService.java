@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 
-public class SessionService {
+final public class SessionService {
 
     private final ArrayList<Session> sessions = new ArrayList<>();
 

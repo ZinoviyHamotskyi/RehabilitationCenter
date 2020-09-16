@@ -5,7 +5,7 @@ import Entities.Service;
 
 import java.util.ArrayList;
 
-public class MasterService {
+final public class MasterService {
     private final ArrayList<Master> masters = new ArrayList<>();
 
     public void addMaster(Master master){

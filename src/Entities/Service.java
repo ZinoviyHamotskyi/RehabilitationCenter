@@ -1,6 +1,6 @@
 package Entities;
 
-public class Service {
+final public class Service {
     private ServiceType type;
     private double price;
 
