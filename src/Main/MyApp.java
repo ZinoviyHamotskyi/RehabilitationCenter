@@ -1,53 +1,68 @@
 package Main;
 
-import manage_service.*;
+import Entities.*;
+import Services.*;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public final class MyApp{
 
     public static void main( String[] args ) {
-        Hostess vika = new Hostess("Vika", "Ryaboshapko");
-
         Service massage = new Service(ServiceType.massage, 300);
         Service lightTraining = new Service(ServiceType.lightTraining, 250);
 
         Master zhenya = new Master("Zhenya", "Frolov", massage);
-
+        Master andrew = new Master("Andrew", "Zinchenco", lightTraining);
 
         Customer ivanPetrov = new Customer("Ivan", "Petrov");
         Customer petroIvanov = new Customer("Petro", "Ivanov");
 
-        ManageService center = new ManageService();
+        final CustomerService customerService = new CustomerService();
+        customerService.addCustomer(ivanPetrov);
+        customerService.addCustomer(petroIvanov);
 
-        center.addHostess(vika);
-        center.addMaster(zhenya);
+        final MasterService masterService = new MasterService();
+        masterService.addMaster(zhenya);
+        masterService.addMaster(andrew);
+        masterService.increaseQualification(zhenya, lightTraining);
 
-        center.centerInfo();
+        final ServiceService serviceService = new ServiceService();
+        serviceService.addService(massage);
+        serviceService.addService(lightTraining);
 
-        gap();
-
-        zhenya.addService(lightTraining);
-        center.makeAppointment(ivanPetrov, lightTraining, zhenya,
-                LocalDate.of(2020, 9, 16));
-
-        center.startTreat(center.getSession(0));
-
-        gap();
-
-        center.masterInfo();
-        center.serviceInfo();
+        serviceService.serviceInfo();
+        masterService.masterInfo();
+        customerService.customerInfo();
 
         gap();
 
-        center.finishTreat(center.getSession(0));
+        final SessionService sessionService = new SessionService();
+        sessionService.makeAppointment(ivanPetrov,
+                massage,
+                zhenya,
+                new GregorianCalendar(2020,Calendar.OCTOBER,7,14,0));
+        sessionService.makeAppointment(petroIvanov,
+                lightTraining,
+                andrew,
+                new GregorianCalendar(2020,Calendar.OCTOBER,1,10,0));
 
+        sessionService.sessionInfo();
+        gap();
 
+        Session workSession = sessionService.getSession(ivanPetrov,
+                new GregorianCalendar(2020,Calendar.OCTOBER,7,14,0));
+        sessionService.startTreat(workSession);
+        sessionService.finishTreat(workSession);
+        gap();
+
+        sessionService.profit(new GregorianCalendar(2020,Calendar.OCTOBER,6,14,0),
+                new GregorianCalendar(2020,Calendar.OCTOBER,8,14,0));
 
     }
 
+
     public static void gap(){
-        System.out.println("--------------------------------------------------");
+        System.out.println("\n--------------------------------------------------\n");
     }
 }

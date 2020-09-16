@@ -1,4 +1,4 @@
-package manage_service;
+package Entities;
 
 public class Service {
     private ServiceType type;
@@ -17,16 +17,8 @@ public class Service {
                 price + "; ";
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     public double getPrice() {
         return price;
-    }
-
-    public void setType(ServiceType type) {
-        this.type = type;
     }
 
     public ServiceType getType() {

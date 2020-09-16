@@ -1,8 +1,8 @@
-package manage_service;
+package Entities;
 
 public enum ServiceType {
     massage,
     diagnostic,
     lightTraining,
-    hardTraining;
+    hardTraining
 }

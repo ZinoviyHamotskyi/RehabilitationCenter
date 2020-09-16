@@ -1,4 +1,4 @@
-package manage_service;
+package Entities;
 
 public final class Customer {
     private final String name;

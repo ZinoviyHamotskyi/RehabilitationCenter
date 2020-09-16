@@ -1,19 +1,19 @@
-package manage_service;
+package Entities;
 
-
-import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public final class Session {
     private final Customer customer;
-    private Master master;
+    private final Master master;
     private final Service service;
-    private double price;
-    private LocalDate date;
+    private final double price;
+    private final Calendar date;
 
     public Session(Customer customer,
                    Master master,
                    Service service,
-                   LocalDate date){
+                   GregorianCalendar date){
         this.customer = customer;
         this.master = master;
         this.service = service;
@@ -21,21 +21,12 @@ public final class Session {
         this.date = date;
     }
 
-    public void setMaster(Master master){
-        if (master.serviceList.contains(service)){
-            this.master = master;
-        }
-        else {
-            System.out.println("Error: this master cannot do this service");
-        }
-    }
-
     public Master getMaster() {
         return master;
     }
 
-    public void setDate(LocalDate date){
-        this.date = date;
+    public  Calendar getDate(){
+        return date;
     }
 
     public double getPrice() {
@@ -51,7 +42,7 @@ public final class Session {
                 customer.toString() +
                 "\n\t" + master.toString() +
                 "\n\t" + service.toString() +
-                "\n\tDate: " + date.toString() +
+                "\n\tDate: " + date.getTime() +
                 "\n\tPrice: " + price + "\n";
     }
 

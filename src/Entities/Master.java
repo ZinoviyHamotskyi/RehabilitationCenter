@@ -1,4 +1,4 @@
-package manage_service;
+package Entities;
 
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ public final class Master {
     }
 
     public void setBonus(double new_bonus){
-        this.bonus = new_bonus;
+        this.bonus = this.bonus + new_bonus;
     }
 
     public void addService(Service service){
@@ -50,6 +50,6 @@ public final class Master {
 
     public void finishTreatment(){
         System.out.println(this.toString() + "finished treatment");
-        state = State.busy;
+        state = State.free;
     }
 }
